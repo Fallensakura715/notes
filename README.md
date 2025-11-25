@@ -1,4 +1,4 @@
 # notes
-My first private(truly private) noob programming repo.
+My first private(truly private) note repo.
 
 I'm NOOB...

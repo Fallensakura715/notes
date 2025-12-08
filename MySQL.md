@@ -16,7 +16,8 @@
 - 可以有多重主键
 ##### Foreign Key 
 
-![[Pasted image 20250514131451.png]]
+![Pasted image 20250514131451.png](https://imgu.falnsakura.top/PicGo/2025/12/5b3994a5e4f81e2d8ff69d5eaab9a4dc.png)
+
 ``` sql
 CREATE TABLE `default`.`enrollment`  (
   `student_id` int NOT NULL,
@@ -50,24 +51,27 @@ FOREIGN KEY (`student_id`)
 
 #### 链接表(N to N)
 - 添加一个新表，用多个外键实现
-- `courses`和`tags`之间是`N : N` 的关系, 不能直接用外键，要多个用来链接的表`course_tags` ![[Pasted image 20250514134354.png]]
+- `courses`和`tags`之间是`N : N` 的关系, 不能直接用外键，要多个用来链接的表`course_tags` ![Pasted image 20250514134354.png](https://imgu.falnsakura.top/PicGo/2025/12/455010ddc61b116a23260f83604d021e.png)
 #### 标准化
 
 ##### 1NF 第一范式
 - 表中每个属性（列）只能存储一个值，不能是集合、数组、列表或多值组合。
 - 例如，`tags` 列中如果存放 `'Java, Python, Golang'` 就不符合 1NF，应该拆成多行或多列。
-- `tags` 应该单独拿出来创建一个表![[Pasted image 20250514134316.png]]
+- `tags` 应该单独拿出来创建一个表![Pasted image 20250514134316.png](https://imgu.falnsakura.top/PicGo/2025/12/455010ddc61b116a23260f83604d021e.png)
+
 ##### 2NF 第二范式
 - 符合 **1NF**
 - 一张表只有一个目的，一张表的every column都描述该表的entity
 - 例如，`courses`的几个column只描述了`courses`的性质，如果多了个`enrollment_date`就违反了2NF
 - `courses`里的`instructor`违反了 **2NF**, `instructor`是一个entity，不属于`courses`，一个`instructor`讲多门课，名字会在`courses`表中重复
-![[Pasted image 20250514135734.png]]
+![Pasted image 20250514135734.png](https://imgu.falnsakura.top/PicGo/2025/12/ad3fc2960ede1b115be58d8ddea4b776.png)
+
 ##### 3NF 第三范式
 - 符合 **2NF**
 - 呃呃呃呃呃定义`R的每个非键属性是R的每个候选键的非传递依赖`看不懂，举个例子吧
-- 表中的列不能派生其他列![[Pasted image 20250514191912.png]]
-- 如果前两列数据改变，`balance`会出现数据不一致![[Pasted image 20250514191953.png]]
+- 表中的列不能派生其他列![Pasted image 20250514191912.png](https://imgu.falnsakura.top/PicGo/2025/12/834b24dd3708e6652d892868b10ff5c9.png)
+
+- 如果前两列数据改变，`balance`会出现数据不一致![Pasted image 20250514191953.png](https://imgu.falnsakura.top/PicGo/2025/12/bd332e1a730bbbe35f834eb96476bcea.png)
 - 违反了3NF，drop`balance`
 ##### *不要什么都遵循范式或者建模！！！*
 
@@ -119,7 +123,7 @@ DECIMAL(p, s) 精度(1-65) 小数位数
 ```
 
 ##### 字符串类
-最好用 VARCHAR(50),  VARCHAR(255)
+通用 VARCHAR(50),  VARCHAR(255)
 ```mysql
 CHAR 		  0-255 bytes        定长字符串，未存储用空格   CHAR(10)
 VARCHAR		  0-65535 bytes		 变长字符串				 VARCHAR(10)
@@ -1509,8 +1513,7 @@ COMMIT;
 - Dirty Reads: 读了未提交的数据
 - Non-repeating Reads: 事务中读相同数据两次，得到了不同的结果
 - Phantom Reads: 查询丢失行，还没COMMIT的时候，其他事务正在修改
-
-![[Pasted image 20250509112547.png]]
+![Pasted image 20250509112547.png](https://imgu.falnsakura.top/PicGo/2025/12/0fc0fef934775278ae7be9b6eae599f2.png)
 
 ```mysql
 SHOW VARIABLES LIKE 'transaction_isolation';

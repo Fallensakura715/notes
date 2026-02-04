@@ -67,6 +67,16 @@
 >
 > > 这是一个嵌套的引用。
 
+
+>[!NOTE]
+
+>[!TIP]
+
+>[!IMPORTANT]
+
+> [!WARNING]
+
+> [!CAUTION]
 ---
 
 ### 4. Lists
